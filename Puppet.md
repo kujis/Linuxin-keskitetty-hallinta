@@ -8,9 +8,9 @@ sudo apt-get install puppet
 Tämän jälkeen loin tiedoston nimeltä "helloPuppet kansioon tmp ja kirjoitin sisällöksi "Hello Henry" seuraavalla komennolla:
 puppet apply -e 'file { "/tmp/helloPuppet": content => "Hello Henry!\n" }'
 
-Tarkistin, että tiedosto on luotu komennolla: ls /tmp/helloPuppet ja sen jälkeen avasin sen nano tmp/helloPuppet komennolla tarkistaakseni että lisäämäni teksti oli siellä.
+Tarkistin että tiedosto on luotu komennolla: 'ls /tmp/helloPuppet' ja sen jälkeen avasin sen 'nano tmp/helloPuppet' -komennolla, tarkistaakseni että lisäämäni teksti oli siellä.
 
-Loin kansion puppet komennolla: mkdir puppet, tämän jälkeen loin tiedosto polun mkdir -p modules/hello/manifests/ ja sinne tiedoston init.pp komennolla: nano modules/hello/manifests/init.pp.
+Loin kansion puppet komennolla: 'mkdir puppet', tämän jälkeen loin alikansiot komennolla: 'mkdir -p modules/hello/manifests/' ja sinne tiedoston "init.pp" komennolla: 'nano modules/hello/manifests/init.pp'.
 Lisäsin init.pp -tiedostoon alla olevan koodiin pätkän:
 
 class hello {
@@ -21,7 +21,7 @@ class hello {
 
 Tämän jälkeen ajoin luomani moduulin komennolla: puppet apply --modulepath modules/ -e 'class {"hello":}'
 
-Ensimmäisellä kerralla en onnistunut moduulin ajossa, sillä olin tehnyt kirjoitus virheen ja luonut manifests kansion sijaan kansion 'manifest'. Sain seuraavan virheilmoituksen: 
+Ensimmäisellä kerralla en onnistunut moduulin ajossa, sillä olin tehnyt kirjoitusvirheen ja luonut manifests kansion sijaan kansion 'manifest'. Tämän takia sain seuraavan virheilmoituksen: 
 "Error: Puppet::Parser::AST::Resource failed with error ArgumentError: Could not find declared class hello at line 1 on node xubuntu.tielab.haaga-helia.fi
 Wrapped exception:
 Could not find declared class hello
@@ -32,4 +32,4 @@ Notice: Compiled catalog for xubuntu.tielab.haaga-helia.fi in environment produc
 Notice: /Stage[main]/Hello/File[/tmp/helloModule]/ensure: defined content as '{md5}e2a0fbdfba4d5df59a94fa5611929aad'
 Notice: Finished catalog run in 0.02 seconds
 
-Lopulta tarkastin vielä luomani tiedoston komennoilla: ls /tmp/helloModule ja cat /tmp/helloModule
+Lopulta tarkastin vielä luomani tiedoston komennoilla: 'ls /tmp/helloModule' ja 'cat /tmp/helloModule'.
