@@ -1,8 +1,11 @@
+#Hello Puppet -kotitehtävä
+
+
 Asensin puppet agentin komennoilla: 
 sudo apt-get update
 sudo apt-get install puppet
 
-Tämän jälkeen loin tiedoston nimeltä "helloPuppet kansioon tmp ja kirjoitin sisällöksi "Hello Henry" seuraavalla komnennolla:
+Tämän jälkeen loin tiedoston nimeltä "helloPuppet kansioon tmp ja kirjoitin sisällöksi "Hello Henry" seuraavalla komennolla:
 puppet apply -e 'file { "/tmp/helloPuppet": content => "Hello Henry!\n" }'
 
 Tarkistin, että tiedosto on luotu komennolla: ls /tmp/helloPuppet ja sen jälkeen avasin sen nano tmp/helloPuppet komennolla tarkistaakseni että lisäämäni teksti oli siellä.
