@@ -5,7 +5,7 @@ sudo apt-get install puppet
 Tämän jälkeen loin tiedoston nimeltä "helloPuppet kansioon tmp ja kirjoitin sisällöksi "Hello Henry" seuraavalla komnennolla:
 puppet apply -e 'file { "/tmp/helloPuppet": content => "Hello Henry!\n" }'
 
-Tarkistin, että tiedosto on luotu komennolla: ls /tmp/helloPuppet ja sen jälkeen avasin sen nano tmp/helloPuppet komennolla.
+Tarkistin, että tiedosto on luotu komennolla: ls /tmp/helloPuppet ja sen jälkeen avasin sen nano tmp/helloPuppet komennolla tarkistaakseni että lisäämäni teksti oli siellä.
 
 Loin kansion puppet komennolla: mkdir puppet, tämän jälkeen loin tiedosto polun mkdir -p modules/hello/manifests/ ja sinne tiedoston init.pp komennolla: nano modules/hello/manifests/init.pp.
 Lisäsin init.pp -tiedostoon alla olevan koodiin pätkän:
