@@ -24,4 +24,10 @@ server = srv
 Tämän jälkeen master puppet eli serveri täytyy käynnistää uudestaan komennolla:
 /etc/init.d/puppetserver restart
 
-puppet agent -t - komento tarkistaa onko palvelimella tapahtunut muutoksia.
+Sain kuitenkin vastaukseksi ... failed.
+
+Logien mukaan vaikutti siltä että sertifikaateissa oli ongelmia. Tyhjensin certificaatit ja generoin ne uudestsaan seuraamalla ohjetta https://docs.puppet.com/puppet/latest/reference/ssl_regenerate_certificates.html.
+
+Ajoin /etc/init.d/puppetserver restart -komennon uudestaan ja tällä kertaa vastaukseksi tuli done.
+
+puppet agent -t - komennolla tarkistin onko palvelimella tapahtunut muutoksia.
