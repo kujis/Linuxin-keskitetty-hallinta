@@ -1,4 +1,5 @@
 #Orjien ohjaaminen verkon yli
+13.4.2016
 
 Ympäristö toteutettiin VirtualBoxissa. Käytössäni on Ubuntu Server 14.04 ja kaksi Xubuntu -tietokonetta.
 
@@ -26,8 +27,25 @@ Tämän jälkeen master puppet eli serveri täytyy käynnistää uudestaan komen
 
 Sain kuitenkin vastaukseksi ... failed.
 
-Logien mukaan vaikutti siltä että sertifikaateissa oli ongelmia. Tyhjensin certificaatit ja generoin ne uudestsaan seuraamalla ohjetta https://docs.puppet.com/puppet/latest/reference/ssl_regenerate_certificates.html.
+Logien mukaan vaikutti siltä että sertifikaateissa oli ongelmia. Tyhjensin certificaatit ja generoin ne uudestaan seuraamalla ohjetta https://docs.puppet.com/puppet/latest/reference/ssl_regenerate_certificates.html.
 
 Ajoin /etc/init.d/puppetserver restart -komennon uudestaan ja tällä kertaa vastaukseksi tuli done.
 
 puppet agent -t - komennolla tarkistin onko palvelimella tapahtunut muutoksia.
+
+###20.4.2016
+
+Ws1 sertifikaatti piti hakea uudestaan ajamalla seuraavilla toimenpiteillä.
+Pysäytin Puppet -palvelun 
+sudo puppet resource service puppet ensure=stopped
+
+Poistin kansion SSL
+rm -r /etc/puppetlabs/puppet/ssl
+
+Käynnistin Puppet -palvelun uudestaan
+puppet resource service puppet ensure=running
+
+Ajoin komennon
+Puppet agent -t
+
+ja lopulta ajoin palvelimella komennon sudo puppet cert list, joka näytti sertifikaatit.
