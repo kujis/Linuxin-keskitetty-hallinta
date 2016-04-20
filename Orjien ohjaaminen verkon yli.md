@@ -49,3 +49,13 @@ Ajoin komennon
 Puppet agent -t
 
 ja lopulta ajoin palvelimella komennon sudo puppet cert list, joka näytti sertifikaatit.
+
+##Openssh-server -paketin asennus ws1 työasemalle
+
+Lisäsin tiedostoon /etc/puppetlabs/code/environments/production/manifests/site.pp alla olevat tiedot:
+
+node ws1 {
+	package ( 'openssh-server':
+	ensure => 'installed':
+	}
+}
