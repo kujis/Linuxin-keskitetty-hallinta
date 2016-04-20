@@ -50,12 +50,34 @@ Puppet agent -t
 
 ja lopulta ajoin palvelimella komennon sudo puppet cert list, joka näytti sertifikaatit.
 
-##Openssh-server -paketin asennus ws1 työasemalle
+##Openssh-server -paketin asennus ws1 -työasemalle
 
-Lisäsin tiedostoon /etc/puppetlabs/code/environments/production/manifests/site.pp alla olevat tiedot:
+Lisäsin ubuntu serveriltä löytyvään tiedostoon: /etc/puppetlabs/code/environments/production/manifests/site.pp alla olevat tiedot:
 
 node ws1 {
 	package ( 'openssh-server':
 	ensure => 'installed':
 	}
 }
+
+##Käyttäjän lisääminen ws2 -työasemalle
+
+useradd ville
+passwd ville
+grep ville /etc/shadow
+grep ville /etc/shadow >> /etc/puppetlabs/code/environments/production/manifests/site.pp
+
+Lisäsin ubuntu serveriltä löytyvään tiedostoon: /etc/puppetlabs/code/environments/production/manifests/site.pp alla olevat tiedot:
+
+node ws2 {
+	user { 'ville':
+	ensure => 'present',
+	name => 'ville',
+	home => '/home/ville',
+	managehome => 'yes',
+	password => grep ville /etc/shadow -komennolla luotu numerosarja
+	}
+}	
+
+
+Ja lopulta ajoin molemmilla työasemilla puppet agent -t -kommenon. Ville -käyttäjätunnus tuli ws2 -tietokoneelle ja SSH asentui ws1 -tietokoneelle.
