@@ -81,3 +81,29 @@ node ws2 {
 
 
 Ja lopulta ajoin molemmilla työasemilla puppet agent -t -kommenon. Ville -käyttäjätunnus tuli ws2 -tietokoneelle ja SSH asentui ws1 -tietokoneelle.
+
+root@ws2:~# puppet agent -t
+Info: Using configured environment 'production'
+Info: Retrieving pluginfacts
+Info: Retrieving plugin
+Info: Caching catalog for ws2.tielab.haaga-helia.fi
+Info: Applying configuration version '1461138582'
+Notice: /Stage[main]/Main/Node[ws2]/User[ville]/ensure: created
+Notice: Applied catalog in 0.26 seconds
+
+Tarkistin että käyttäjätunnus oli tullut tietokoneelle.
+
+root@ws1:~# puppet agent -t
+Info: Caching certificate for ws1.tielab.haaga-helia.fi
+Info: Caching certificate_revocation_list for ca
+Info: Caching certificate for ws1.tielab.haaga-helia.fi
+Info: Using configured environment 'production'
+Info: Retrieving pluginfacts
+Info: Retrieving plugin
+Info: Caching catalog for ws1.tielab.haaga-helia.fi
+Info: Applying configuration version '1461139188'
+Notice: /Stage[main]/Main/Node[ws1]/Package[openssh-server]/ensure: created
+Notice: Applied catalog in 11.18 seconds
+
+Tarkistin, että SSH on asentunut komennolla ls /etc/ ja listasta löytyi ssh.
+
