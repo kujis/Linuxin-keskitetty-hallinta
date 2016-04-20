@@ -107,3 +107,31 @@ Notice: Applied catalog in 11.18 seconds
 
 Tarkistin, että SSH on asentunut komennolla ls /etc/ ja listasta löytyi ssh.
 
+Oman tyypin luonti
+Luodaan hakemistot:
+/etc/puppetlabs/code/environments/production/modules/testi/manifests
+/etc/puppetlabs/code/environments/production/modules/testi/templates
+
+Manifests-hakemistoon tiedosto init.pp jossa:
+
+class testi {
+}
+
+manifests -hakemistoon tiedosto tyyppi.pp jossa tiedot: 
+define  testi: tyyppi {
+	file {"/etc/testi":
+	content => 'Tämä on testitiedosto',
+	owner => 'root',
+	mode => '0664',
+	}
+}
+
+site.pp tiedostossa:
+
+node ws1 {
+	testi::tyyppi{}
+}
+
+Seuraava vaihe: templaten käyttö
+Muuta tyyppi.pp tiedoistoa:
+define testi::tyyppi (String $otsikko) {
