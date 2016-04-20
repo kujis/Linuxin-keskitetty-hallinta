@@ -35,7 +35,7 @@ puppet agent -t - komennolla tarkistin onko palvelimella tapahtunut muutoksia.
 
 ###20.4.2016
 
-Ws1 sertifikaatti piti hakea uudestaan ajamalla seuraavilla toimenpiteillä.
+#####Ws1 sertifikaatti piti hakea uudestaan seuraavilla toimenpiteillä.
 Pysäytin Puppet -palvelun 
 sudo puppet resource service puppet ensure=stopped
 
